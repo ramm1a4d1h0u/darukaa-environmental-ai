@@ -2,56 +2,43 @@ import json
 from pathlib import Path
 
 import chromadb
-from sentence_transformers import SentenceTransformer
+from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 
-
-# -----------------------------
-# Paths
-# -----------------------------
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 KNOWLEDGE_FILE = BASE_DIR / "data" / "knowledge_base.json"
 CHROMA_DIR = BASE_DIR / "data" / "chroma_db"
 
 
-# -----------------------------
-# Embedding model
-# -----------------------------
+print("Loading Chroma embedding function...")
 
-print("Loading embedding model...")
+embedding_function = DefaultEmbeddingFunction()
 
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+print("Embedding function loaded.")
 
-print("Embedding model loaded.")
-
-
-# -----------------------------
-# ChromaDB
-# -----------------------------
 
 client = chromadb.PersistentClient(
     path=str(CHROMA_DIR)
 )
 
 collection = client.get_or_create_collection(
-    name="environmental_knowledge"
+    name="environmental_knowledge",
+    embedding_function=embedding_function
 )
 
 
-# -----------------------------
-# Load knowledge
-# -----------------------------
-
 def load_knowledge():
-    with open(KNOWLEDGE_FILE, "r", encoding="utf-8") as file:
+    with open(
+        KNOWLEDGE_FILE,
+        "r",
+        encoding="utf-8"
+    ) as file:
         return json.load(file)
 
 
-# -----------------------------
-# Index knowledge
-# -----------------------------
-
 def build_knowledge_base():
+
     knowledge = load_knowledge()
 
     documents = []
@@ -64,8 +51,10 @@ def build_knowledge_base():
             f"Topic: {item['topic']}\n"
             f"Title: {item['title']}\n"
             f"Content: {item['content']}\n"
-            f"Environmental metrics: {', '.join(item['metrics'])}\n"
-            f"Interventions: {', '.join(item['interventions'])}"
+            f"Environmental metrics: "
+            f"{', '.join(item['metrics'])}\n"
+            f"Interventions: "
+            f"{', '.join(item['interventions'])}"
         )
 
         documents.append(document)
@@ -79,66 +68,57 @@ def build_knowledge_base():
 
         ids.append(item["id"])
 
-    embeddings = embedding_model.encode(
-        documents,
-        normalize_embeddings=True
-    ).tolist()
-
     collection.upsert(
         ids=ids,
         documents=documents,
-        embeddings=embeddings,
         metadatas=metadatas
     )
 
-    print(f"Indexed {len(documents)} knowledge documents.")
+    print(
+        f"Indexed {len(documents)} knowledge documents."
+    )
 
 
-# -----------------------------
-# Search knowledge
-# -----------------------------
-
-def search_knowledge(query: str, top_k: int = 3):
-
-    query_embedding = embedding_model.encode(
-        [query],
-        normalize_embeddings=True
-    ).tolist()
+def search_knowledge(
+    query: str,
+    top_k: int = 3
+):
 
     results = collection.query(
-        query_embeddings=query_embedding,
+        query_texts=[query],
         n_results=top_k
     )
 
     return results
 
+
 def rebuild_knowledge_base():
+
     global collection
 
-    # Delete the existing collection
     try:
-        client.delete_collection("environmental_knowledge")
+        client.delete_collection(
+            "environmental_knowledge"
+        )
     except Exception:
         pass
 
-    # Create a fresh collection
     collection = client.create_collection(
-        name="environmental_knowledge"
+        name="environmental_knowledge",
+        embedding_function=embedding_function
     )
 
-    # Index the new knowledge
     build_knowledge_base()
 
-    print("Knowledge base rebuilt successfully.")
+    print(
+        "Knowledge base rebuilt successfully."
+    )
+
 
 def search_intervention_evidence(
     intervention: str,
     top_k: int = 3
 ):
-    """
-    Retrieve scientific evidence specifically related
-    to a recommended intervention.
-    """
 
     query = (
         f"Scientific evidence about {intervention} "
@@ -146,13 +126,8 @@ def search_intervention_evidence(
         f"water management and ecosystem functions."
     )
 
-    query_embedding = embedding_model.encode(
-        [query],
-        normalize_embeddings=True
-    ).tolist()
-
     results = collection.query(
-        query_embeddings=query_embedding,
+        query_texts=[query],
         n_results=top_k
     )
 
