@@ -1,83 +1,83 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
 from pathlib import Path
+import threading
 
-from app.models import EnvironmentalInput
-from app.pipeline import run_environmental_analysis
-from app.llm_report import generate_scientific_report
 from app.chat import chat_with_environmental_scientist
 
 
-app = FastAPI(title="Darukaa Earth AI")
+app = FastAPI(
+    title="Darukaa Earth AI Environmental Scientist"
+)
 
 
-# --------------------------------------------------
-# CHAT REQUEST MODEL
-# --------------------------------------------------
+BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_DIR = BASE_DIR / "static"
 
-class ChatRequest(BaseModel):
-    session_id: str
-    message: str
-
-
-# --------------------------------------------------
-# HOME PAGE
-# --------------------------------------------------
 
 @app.get("/")
 def home():
     return FileResponse(
-        Path(__file__).resolve().parent.parent
-        / "static"
-        / "index.html"
+        STATIC_DIR / "index.html"
     )
 
-
-# --------------------------------------------------
-# ENVIRONMENTAL ANALYSIS
-# --------------------------------------------------
-
-@app.post("/analyze")
-def analyze_environment(data: EnvironmentalInput):
-
-    # -----------------------------------------
-    # 1. Run environmental analysis
-    # -----------------------------------------
-
-    result = run_environmental_analysis(
-        data,
-        top_k=5,
-        top_n=3
-    )
-
-    # -----------------------------------------
-    # 2. Generate scientific report using Gemini
-    # -----------------------------------------
-
-    report = generate_scientific_report(result)
-
-    # -----------------------------------------
-    # 3. Return complete response
-    # -----------------------------------------
-
-    return {
-        "environmental_context": data.model_dump(),
-        "analysis": result,
-        "scientific_report": report
-    }
-
-
-# --------------------------------------------------
-# CONVERSATIONAL ENVIRONMENTAL SCIENTIST
-# --------------------------------------------------
 
 @app.post("/chat")
-def chat(request: ChatRequest):
+def chat(request: dict):
 
-    result = chat_with_environmental_scientist(
-        session_id=request.session_id,
-        message=request.message
+    session_id = request.get(
+        "session_id",
+        "default"
     )
 
-    return result
+    message = request.get(
+        "message",
+        ""
+    )
+
+    return chat_with_environmental_scientist(
+        session_id,
+        message
+    )
+
+
+def initialize_rag():
+
+    try:
+
+        from app.rag import collection, build_knowledge_base
+
+        count = collection.count()
+
+        if count == 0:
+
+            print(
+                "Knowledge base is empty. "
+                "Building knowledge base..."
+            )
+
+            build_knowledge_base()
+
+        else:
+
+            print(
+                f"Knowledge base already contains "
+                f"{count} documents."
+            )
+
+    except Exception as e:
+
+        print(
+            f"RAG initialization failed: {e}"
+        )
+
+
+@app.on_event("startup")
+def startup_event():
+
+    thread = threading.Thread(
+        target=initialize_rag,
+        daemon=True
+    )
+
+    thread.start()

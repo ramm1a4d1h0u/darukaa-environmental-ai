@@ -85,14 +85,14 @@ def build_knowledge_base():
 
 
 # Make sure the knowledge base exists.
-if collection.count() == 0:
-    print("Knowledge base is empty. Building knowledge base...")
-    build_knowledge_base()
-else:
-    print(
-        f"Knowledge base already contains "
-        f"{collection.count()} documents."
-    )
+# if collection.count() == 0:
+#     print("Knowledge base is empty. Building knowledge base...")
+#     build_knowledge_base()
+# else:
+#     print(
+#         f"Knowledge base already contains "
+#         f"{collection.count()} documents."
+#     )
 
 
 def search_knowledge(
