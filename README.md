@@ -120,7 +120,6 @@ The system supports follow-up requests such as:
 | Deployment | Render |
 | Version Control | Git, GitHub |
 
----
 
 ## Local Setup
 
