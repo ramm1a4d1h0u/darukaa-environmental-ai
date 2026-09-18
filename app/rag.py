@@ -22,11 +22,6 @@ client = chromadb.PersistentClient(
     path=str(CHROMA_DIR)
 )
 
-collection = client.get_or_create_collection(
-    name="environmental_knowledge",
-    embedding_function=embedding_function
-)
-
 
 def load_knowledge():
     with open(
@@ -35,6 +30,16 @@ def load_knowledge():
         encoding="utf-8"
     ) as file:
         return json.load(file)
+
+
+def create_collection():
+    return client.get_or_create_collection(
+        name="environmental_knowledge",
+        embedding_function=embedding_function
+    )
+
+
+collection = create_collection()
 
 
 def build_knowledge_base():
@@ -76,6 +81,17 @@ def build_knowledge_base():
 
     print(
         f"Indexed {len(documents)} knowledge documents."
+    )
+
+
+# Make sure the knowledge base exists.
+if collection.count() == 0:
+    print("Knowledge base is empty. Building knowledge base...")
+    build_knowledge_base()
+else:
+    print(
+        f"Knowledge base already contains "
+        f"{collection.count()} documents."
     )
 
 
