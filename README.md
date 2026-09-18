@@ -129,16 +129,15 @@ The system supports follow-up requests such as:
 ```bash
 git clone https://github.com/ramm1a4d1h0u/darukaa-environmental-ai.git
 cd darukaa-environmental-ai
+```
 
-
-````markdown
 ### 2. Create a virtual environment
 
 Windows:
 
 ```powershell
 python -m venv .venv
-````
+```
 
 Activate the virtual environment:
 
@@ -148,11 +147,11 @@ Activate the virtual environment:
 
 ### 3. Install dependencies
 
-```powershell
+```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure the Gemini API
+### 4. Configure Gemini API
 
 Create a `.env` file in the project root:
 
@@ -160,33 +159,16 @@ Create a `.env` file in the project root:
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-Replace `your_gemini_api_key` with your Gemini API key.
-
-**Do not commit the `.env` file to GitHub.**
+Never commit the `.env` file to GitHub.
 
 ### 5. Run the application
 
-```powershell
+```bash
 uvicorn app.main:app --reload
 ```
 
-The application will start at:
+Open:
 
 ```text
 http://127.0.0.1:8000
-```
-
-Open the URL in a browser to use the application.
-
-### 6. Stop the application
-
-Press:
-
-```text
-CTRL + C
-```
-
-in the terminal.
-
-```
 ```
