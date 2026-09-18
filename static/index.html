@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Darukaa Earth AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Arial, sans-serif;
+            background: #f3f7f3;
+            color: #18351f;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #174f2a;
+            color: white;
+            padding: 22px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        .header-inner {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            margin-top: 4px;
+            opacity: 0.85;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CHAT AREA
+        ========================= */
+
+        #chat {
+            max-width: 1050px;
+            margin: 25px auto 150px;
+            padding: 0 18px;
+        }
+
+        .user-message {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0;
+        }
+
+        .user-bubble {
+            max-width: 75%;
+            background: #216b38;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 18px 18px 4px 18px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           AI CARD
+        ========================= */
+
+        .ai-card {
+            background: white;
+            border: 1px solid #dce7de;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 18px 0 30px;
+            box-shadow: 0 5px 20px rgba(30,70,40,0.07);
+            line-height: 1.65;
+        }
+
+        .ai-card h2 {
+            color: #17652e;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .ai-card h3 {
+            color: #1b7135;
+            margin-top: 26px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .ai-card h4 {
+            color: #245d35;
+            margin-top: 22px;
+            margin-bottom: 8px;
+        }
+
+        .ai-card strong {
+            color: #173f24;
+        }
+
+        .separator {
+            border: none;
+            border-top: 1px solid #dce7de;
+            margin: 25px 0;
+        }
+
+        .evidence-box {
+            background: #f4f9f4;
+            border-left: 4px solid #3a8d4f;
+            padding: 14px 16px;
+            margin: 12px 0 18px;
+            border-radius: 7px;
+        }
+
+        .source {
+            font-size: 13px;
+            color: #46604c;
+        }
+
+        .source a {
+            color: #26733b;
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           TYPING
+        ========================= */
+
+        .typing {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid #dce7de;
+            border-radius: 15px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background: #39834a;
+            border-radius: 50%;
+            animation: blink 1.3s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+
+            0%, 80%, 100% {
+                opacity: 0.25;
+            }
+
+            40% {
+                opacity: 1;
+            }
+        }
+
+
+        /* =========================
+           INPUT BAR
+        ========================= */
+
+        .input-area {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(243,247,243,0.97);
+            border-top: 1px solid #d9e3da;
+            padding: 13px 18px;
+            z-index: 20;
+        }
+
+        .input-inner {
+            max-width: 1050px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        #message {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid #cbd9ce;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            background: white;
+        }
+
+        #message:focus {
+            border-color: #39834a;
+        }
+
+        #send {
+            border: none;
+            background: #216b38;
+            color: white;
+            padding: 0 22px;
+            border-radius: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #send:hover {
+            background: #18582c;
+        }
+
+        #send:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           NEW CHAT
+        ========================= */
+
+        .controls {
+            max-width: 1050px;
+            margin: 0 auto 10px;
+            padding: 0 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .session {
+            font-size: 11px;
+            color: #718075;
+        }
+
+        #new-chat {
+            border: 1px solid #b9cabb;
+            background: white;
+            color: #31543a;
+            padding: 7px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #new-chat:hover {
+            background: #edf4ee;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+
+            #chat {
+                padding: 0 10px;
+            }
+
+            .ai-card {
+                padding: 18px;
+            }
+
+            .user-bubble {
+                max-width: 90%;
+            }
+
+            .input-inner {
+                gap: 6px;
+            }
+
+            #send {
+                padding: 0 16px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="brand">
+            🌱 Darukaa Earth AI
+        </div>
+
+        <div class="subtitle">
+            AI Environmental Scientist · Evidence-Grounded Biodiversity Intelligence
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="controls">
+
+    <div class="session">
+        Environmental analysis session
+    </div>
+
+    <button id="new-chat">
+        + New conversation
+    </button>
+
+</div>
+
+
+<main id="chat"></main>
+
+
+<div class="input-area">
+
+    <div class="input-inner">
+
+        <input
+            id="message"
+            type="text"
+            placeholder="Describe your environmental situation..."
+            autocomplete="off"
+        >
+
+        <button id="send">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // ============================================
+    // SESSION
+    // ============================================
+
+    let sessionId =
+        localStorage.getItem("darukaa_session");
+
+    if (!sessionId) {
+
+        sessionId =
+            "session_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .substring(2, 8);
+
+        localStorage.setItem(
+            "darukaa_session",
+            sessionId
+        );
+    }
+
+
+    // ============================================
+    // ELEMENTS
+    // ============================================
+
+    const chat =
+        document.getElementById("chat");
+
+    const input =
+        document.getElementById("message");
+
+    const sendButton =
+        document.getElementById("send");
+
+    const newChatButton =
+        document.getElementById("new-chat");
+
+
+    // ============================================
+    // MARKDOWN → HTML
+    // ============================================
+
+    function formatText(text) {
+
+        let html = text;
+
+        // Escape HTML
+        html = html
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+        // Links
+        html = html.replace(
+            /(https?:\/\/[^\s<]+)/g,
+            '<a href="$1" target="_blank">$1</a>'
+        );
+
+        // Headings
+        html = html.replace(
+            /^### (.*)$/gm,
+            "<h4>$1</h4>"
+        );
+
+        html = html.replace(
+            /^## (.*)$/gm,
+            "<h2>$1</h2>"
+        );
+
+        html = html.replace(
+            /^# (.*)$/gm,
+            "<h2>$1</h2>"
+        );
+
+        // Bold
+        html = html.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+        // Horizontal line
+        html = html.replace(
+            /^-{3,}$/gm,
+            '<hr class="separator">'
+        );
+
+        // Bullet points
+        html = html.replace(
+            /^[•\-] (.*)$/gm,
+            "• $1<br>"
+        );
+
+        // New lines
+        html = html.replace(
+            /\n/g,
+            "<br>"
+        );
+
+        // Fix excessive breaks around headings
+        html = html
+            .replace(/<br><h2>/g, "<h2>")
+            .replace(/<\/h2><br>/g, "</h2>")
+            .replace(/<br><h4>/g, "<h4>")
+            .replace(/<\/h4><br>/g, "</h4>");
+
+        return html;
+    }
+
+
+    // ============================================
+    // ADD USER MESSAGE
+    // ============================================
+
+    function addUserMessage(text) {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "user-message";
+
+        wrapper.innerHTML = `
+            <div class="user-bubble">
+                ${escapeHtml(text)}
+            </div>
+        `;
+
+        chat.appendChild(wrapper);
+
+        scrollToBottom();
+    }
+
+
+    // ============================================
+    // ADD AI MESSAGE
+    // ============================================
+
+    function addAIMessage(text) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "ai-card";
+
+        card.innerHTML =
+            formatText(text);
+
+        chat.appendChild(card);
+
+        scrollToBottom();
+    }
+
+
+    // ============================================
+    // TYPING INDICATOR
+    // ============================================
+
+    function showTyping() {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.id =
+            "typing";
+
+        wrapper.className =
+            "typing";
+
+        wrapper.innerHTML = `
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        `;
+
+        chat.appendChild(wrapper);
+
+        scrollToBottom();
+    }
+
+
+    function hideTyping() {
+
+        const typing =
+            document.getElementById("typing");
+
+        if (typing) {
+            typing.remove();
+        }
+    }
+
+
+    // ============================================
+    // SEND MESSAGE
+    // ============================================
+
+    async function sendMessage() {
+
+        const text =
+            input.value.trim();
+
+        if (!text) {
+            return;
+        }
+
+        input.value = "";
+
+        sendButton.disabled = true;
+
+        addUserMessage(text);
+
+        showTyping();
+
+        try {
+
+            const response =
+                await fetch("/chat", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        session_id:
+                            sessionId,
+
+                        message:
+                            text
+
+                    })
+                });
+
+
+            const data =
+                await response.json();
+
+            hideTyping();
+
+
+            if (
+                data.type === "analysis" &&
+                data.message
+            ) {
+
+                addAIMessage(
+                    data.message
+                );
+
+            }
+
+            else if (
+                data.type === "clarification"
+            ) {
+
+                addAIMessage(
+                    data.message
+                );
+
+            }
+
+            else {
+
+                addAIMessage(
+                    "I couldn't complete the environmental analysis."
+                );
+            }
+
+
+        } catch (error) {
+
+            hideTyping();
+
+            addAIMessage(
+                "⚠️ Unable to connect to the Darukaa Earth AI server. Please check that the FastAPI server is running."
+            );
+
+            console.error(error);
+
+        }
+
+
+        sendButton.disabled = false;
+
+        input.focus();
+    }
+
+
+    // ============================================
+    // ESCAPE HTML
+    // ============================================
+
+    function escapeHtml(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            text;
+
+        return div.innerHTML;
+    }
+
+
+    // ============================================
+    // SCROLL
+    // ============================================
+
+    function scrollToBottom() {
+
+        window.scrollTo({
+
+            top:
+                document.body.scrollHeight,
+
+            behavior:
+                "smooth"
+        });
+    }
+
+
+    // ============================================
+    // EVENTS
+    // ============================================
+
+    sendButton.addEventListener(
+        "click",
+        sendMessage
+    );
+
+
+    input.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
+
+                event.preventDefault();
+
+                sendMessage();
+            }
+        }
+    );
+
+
+    newChatButton.addEventListener(
+        "click",
+        function() {
+
+            sessionId =
+                "session_" +
+                Date.now() +
+                "_" +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8);
+
+            localStorage.setItem(
+                "darukaa_session",
+                sessionId
+            );
+
+            chat.innerHTML = "";
+
+            input.focus();
+        }
+    );
+
+
+    input.focus();
+
+</script>
+
+</body>
+
+</html>

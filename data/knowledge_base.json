@@ -1,0 +1,401 @@
+[
+  {
+    "id": "soil_001",
+    "topic": "soil_health",
+    "title": "Soil organic carbon and soil function",
+    "content": "Soil organic carbon is associated with important soil functions including soil structure, nutrient cycling, water-holding capacity, soil biological activity, erosion control and carbon storage. Improved land management can help maintain or increase soil organic carbon.",
+    "metrics": [
+      "soil_organic_carbon",
+      "soil_structure",
+      "water_holding_capacity",
+      "soil_biodiversity",
+      "erosion"
+    ],
+    "interventions": [
+      "cover_crops",
+      "residue_management",
+      "soil_conservation",
+      "agroforestry"
+    ],
+    "source": "FAO Soils Portal - Soil Carbon Sequestration",
+    "source_url": "https://www.fao.org/soils-portal/soil-management/soil-carbon-sequestration/en/"
+  },
+  {
+    "id": "soil_002",
+    "topic": "soil_health",
+    "title": "Cover crops and soil protection",
+    "content": "Cover crops can protect soil during fallow periods, recycle nutrients, improve soil structure and provide organic matter. They can also help break continuous monoculture. Vegetative cover and residue layers can reduce evaporation and support water infiltration and soil moisture.",
+    "metrics": [
+      "soil_structure",
+      "soil_moisture",
+      "water_infiltration",
+      "soil_biodiversity",
+      "nutrient_cycling"
+    ],
+    "interventions": [
+      "cover_crops",
+      "crop_rotation",
+      "residue_retention"
+    ],
+    "source": "FAO Conservation Agriculture - Soil Organic Cover",
+    "source_url": "https://www.fao.org/conservation-agriculture/in-practice/soil-organic-cover/en/"
+  },
+  {
+    "id": "soil_003",
+    "topic": "soil_health",
+    "title": "Soil biodiversity and ecosystem functions",
+    "content": "Soil organisms contribute to organic matter decomposition, nutrient transformations, soil aggregation, nutrient availability and other soil functions. Agricultural management can influence soil biological communities and their ecosystem functions.",
+    "metrics": [
+      "soil_biodiversity",
+      "nutrient_cycling",
+      "soil_organic_matter",
+      "soil_structure",
+      "soil_fertility"
+    ],
+    "interventions": [
+      "crop_diversification",
+      "organic_matter_management",
+      "reduced_disturbance",
+      "cover_crops"
+    ],
+    "source": "FAO - Agriculture and Soil Biodiversity",
+    "source_url": "https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/agriculture-and-soil-biodiversity/en/"
+  },
+  {
+    "id": "soil_004",
+    "topic": "soil_water",
+    "title": "Integrated soil and water management",
+    "content": "Integrated soil and water management can improve soil health, reduce erosion and enhance water infiltration and storage. Practices discussed by FAO include minimum tillage, crop rotation, organic matter addition and cover cropping.",
+    "metrics": [
+      "soil_health",
+      "soil_moisture",
+      "water_infiltration",
+      "water_storage",
+      "erosion"
+    ],
+    "interventions": [
+      "minimum_tillage",
+      "crop_rotation",
+      "organic_matter_addition",
+      "cover_crops"
+    ],
+    "source": "FAO India - Integrated Soil and Water Management",
+    "source_url": "https://www.fao.org/india/news/detail/Integrated-soil-and-water-management-essential-to-achieve-food-security-in-India-FAO/en/"
+  },
+
+  {
+    "id": "climate_001",
+    "topic": "climate_water",
+    "title": "Drought and water scarcity",
+    "content": "Drought results from prolonged rainfall deficits and can cause severe water scarcity for ecosystems and agriculture. Prolonged drought can damage vegetation cover, accelerate land degradation, increase soil erosion and reduce soil fertility.",
+    "metrics": [
+      "rainfall",
+      "water_availability",
+      "vegetation_cover",
+      "soil_erosion",
+      "soil_fertility"
+    ],
+    "interventions": [
+      "drought_resilience",
+      "water_conservation",
+      "soil_moisture_conservation"
+    ],
+    "source": "FAO - Drought Management",
+    "source_url": "https://www.fao.org/land-water/water/drought/drought-management/en/"
+  },
+  {
+    "id": "climate_002",
+    "topic": "climate_water",
+    "title": "Soil moisture conservation in rainfed agriculture",
+    "content": "Rainfed agricultural systems depend strongly on water availability. Soil moisture conservation, rainwater harvesting, improved water management and integrated cropping systems can improve water productivity and resilience when aligned with local water availability.",
+    "metrics": [
+      "soil_moisture",
+      "water_productivity",
+      "water_availability",
+      "crop_resilience"
+    ],
+    "interventions": [
+      "soil_moisture_conservation",
+      "rainwater_harvesting",
+      "integrated_cropping",
+      "improved_water_management"
+    ],
+    "source": "FAO - Rainfed Agriculture",
+    "source_url": "https://www.fao.org/land-water/water/agricultural-water-management/rainfed-agriculture/en"
+  },
+  {
+    "id": "climate_003",
+    "topic": "climate_water",
+    "title": "Water scarcity and soil moisture",
+    "content": "Water scarcity and climate variability can constrain agricultural production. Higher evaporation and prolonged drought can reduce soil moisture and water availability for crops, increasing pressure on agricultural water management.",
+    "metrics": [
+      "water_availability",
+      "soil_moisture",
+      "evaporation",
+      "climate_risk"
+    ],
+    "interventions": [
+      "water_efficiency",
+      "soil_moisture_conservation",
+      "drought_management"
+    ],
+    "source": "FAO - Water Overview",
+    "source_url": "https://www.fao.org/land-water/water/overview/en"
+  },
+  {
+    "id": "climate_004",
+    "topic": "climate_resilience",
+    "title": "Agroforestry and climate resilience",
+    "content": "Agroforestry can contribute to climate adaptation by diversifying agricultural systems and providing functions such as shade, water conservation and improved soil health. Diverse systems can reduce vulnerability to environmental shocks such as droughts when appropriately designed and managed.",
+    "metrics": [
+      "climate_resilience",
+      "water_management",
+      "soil_health",
+      "biodiversity"
+    ],
+    "interventions": [
+      "agroforestry",
+      "tree_crop_integration",
+      "diversified_farming"
+    ],
+    "source": "FAO - Agroforestry FAQs",
+    "source_url": "https://www.fao.org/agroforestry/about-agroforestry/faqs/"
+  },
+
+  {
+    "id": "land_001",
+    "topic": "land_use",
+    "title": "Monoculture and soil biodiversity",
+    "content": "Intensive agriculture and monoculture can place pressure on soil health through changes in soil structure and water retention, erosion, nutrient depletion and reduced soil biodiversity. Crop rotation, cover crops and improved residue management can address several of these pressures.",
+    "metrics": [
+      "soil_biodiversity",
+      "soil_structure",
+      "water_retention",
+      "erosion",
+      "nutrient_cycling"
+    ],
+    "interventions": [
+      "crop_rotation",
+      "cover_crops",
+      "residue_management"
+    ],
+    "source": "FAO - Agriculture and Soil Biodiversity",
+    "source_url": "https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/agriculture-and-soil-biodiversity/en/"
+  },
+  {
+    "id": "land_002",
+    "topic": "land_use",
+    "title": "Sustainable land management",
+    "content": "Sustainable land management integrates soil and water conservation, natural resource management and landscape management. Its objectives include maintaining land productivity, restoring degraded areas, protecting biodiversity and building resilience to climate change.",
+    "metrics": [
+      "land_productivity",
+      "land_degradation",
+      "biodiversity",
+      "climate_resilience",
+      "soil_health"
+    ],
+    "interventions": [
+      "sustainable_land_management",
+      "land_restoration",
+      "soil_conservation",
+      "water_conservation"
+    ],
+    "source": "FAO - Sustainable Land Management",
+    "source_url": "https://www.fao.org/land-water/land/sustainable-land-management/en/"
+  },
+  {
+    "id": "land_003",
+    "topic": "land_use",
+    "title": "Agroforestry and landscape connectivity",
+    "content": "Agroforestry can extend benefits beyond individual farms by supporting ecological connectivity, water regulation and landscape resilience. Integrating trees with crops or livestock can create a more diverse agricultural landscape.",
+    "metrics": [
+      "landscape_connectivity",
+      "biodiversity",
+      "water_regulation",
+      "landscape_resilience"
+    ],
+    "interventions": [
+      "agroforestry",
+      "tree_crop_integration",
+      "habitat_restoration"
+    ],
+    "source": "FAO - Agroforestry: From the Farm to the Landscape",
+    "source_url": "https://www.fao.org/americas/priorities/agricultura-sostenible/agrofesteria/8.-from-the-farm-to-the-landscape/en/"
+  },
+  {
+    "id": "land_004",
+    "topic": "land_use",
+    "title": "Agricultural diversification and ecosystem services",
+    "content": "Diversification of cropping systems can enhance biodiversity and ecosystem services including pollination, pest control, nutrient cycling, soil fertility and water regulation. Responses vary by context, so diversification practices should be matched to local conditions.",
+    "metrics": [
+      "biodiversity",
+      "pollination",
+      "pest_control",
+      "nutrient_cycling",
+      "water_regulation"
+    ],
+    "interventions": [
+      "crop_diversification",
+      "intercropping",
+      "mixed_cropping"
+    ],
+    "source": "FAO - Agricultural Diversification and Ecosystem Services",
+    "source_url": "https://www.fao.org/agroecology/new-knowledge-module/publications/detail/agricultural-diversification-promotes-multiple-ecosystem-services-without-compromising-yield/en/"
+  },
+
+  {
+    "id": "bio_001",
+    "topic": "biodiversity",
+    "title": "Biodiversity and ecosystem functions",
+    "content": "Biodiversity supports ecosystem functions and services in agricultural systems. Biodiversity above and below ground, including soil biodiversity, can contribute to ecosystem resilience and sustainable agricultural production.",
+    "metrics": [
+      "species_diversity",
+      "ecosystem_function",
+      "soil_biodiversity",
+      "ecosystem_resilience"
+    ],
+    "interventions": [
+      "biodiversity_conservation",
+      "crop_diversification",
+      "habitat_management"
+    ],
+    "source": "FAO - Biodiversity and Ecosystem Services",
+    "source_url": "https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/scpi-home/managing-ecosystems/biodiversity-and-ecosystem-services/en/"
+  },
+  {
+    "id": "bio_002",
+    "topic": "biodiversity",
+    "title": "Pollinators and agricultural biodiversity",
+    "content": "Pollinators provide an important ecosystem service in agricultural ecosystems. Pollination depends on interactions between plants and pollinating animals, and loss of pollinators can negatively affect agricultural biodiversity.",
+    "metrics": [
+      "pollinator_diversity",
+      "pollination",
+      "crop_biodiversity"
+    ],
+    "interventions": [
+      "pollinator_habitat",
+      "flowering_resources",
+      "crop_diversification"
+    ],
+    "source": "FAO - Pollination",
+    "source_url": "https://www.fao.org/agriculture/crops/core-themes/theme/biodiversity-and-ecosystem-services/pollination/en/"
+  },
+  {
+    "id": "bio_003",
+    "topic": "biodiversity",
+    "title": "Crop diversification for pollinator conservation",
+    "content": "Crop diversification practices such as intercropping, flowering crops and smaller field sizes can increase floral resources and landscape connectivity for pollinators. The effects are context-dependent and may differ among species.",
+    "metrics": [
+      "pollinator_diversity",
+      "floral_resources",
+      "landscape_connectivity",
+      "crop_diversity"
+    ],
+    "interventions": [
+      "intercropping",
+      "flowering_crops",
+      "crop_diversification"
+    ],
+    "source": "FAO - Crop Diversification for Pollinator Conservation",
+    "source_url": "https://www.fao.org/agroecology/in-action/detail/crop-diversification-for-pollinator-conservation/en"
+  },
+  {
+    "id": "bio_004",
+    "topic": "biodiversity",
+    "title": "Agroforestry and biodiversity",
+    "content": "Agroforestry integrates trees with crops or livestock and can contribute to farm biodiversity, soil health and water management. Its ecological benefits depend on appropriate design and management for local conditions.",
+    "metrics": [
+      "farm_biodiversity",
+      "soil_health",
+      "water_management",
+      "habitat_quality"
+    ],
+    "interventions": [
+      "agroforestry",
+      "tree_crop_integration",
+      "diversified_farming"
+    ],
+    "source": "FAO - Agroforestry",
+    "source_url": "https://www.fao.org/agroforestry/en"
+  },
+
+  {
+    "id": "impact_001",
+    "topic": "human_impact",
+    "title": "Deforestation and biodiversity",
+    "content": "Deforestation can damage and fragment habitats, contribute to biodiversity loss, disrupt water cycles, increase soil erosion and contribute to land degradation.",
+    "metrics": [
+      "forest_cover",
+      "habitat_fragmentation",
+      "biodiversity",
+      "water_cycles",
+      "soil_erosion"
+    ],
+    "interventions": [
+      "forest_conservation",
+      "forest_restoration",
+      "landscape_restoration"
+    ],
+    "source": "FAO - Reducing Deforestation",
+    "source_url": "https://www.fao.org/sustainable-forest-management-toolbox/modules/reducing-deforestation/"
+  },
+  {
+    "id": "impact_002",
+    "topic": "human_impact",
+    "title": "Agricultural inputs and environmental pressure",
+    "content": "Misuse or excessive use of fertilizers and pesticides can affect soil and water quality and create risks for ecosystems. Intensive agricultural systems can also contribute to biodiversity loss through simplification of cultivated species and pressure on natural resources.",
+    "metrics": [
+      "water_quality",
+      "soil_quality",
+      "biodiversity",
+      "pesticide_pressure",
+      "nutrient_load"
+    ],
+    "interventions": [
+      "integrated_pest_management",
+      "responsible_fertilizer_use",
+      "crop_diversification"
+    ],
+    "source": "FAO - Agriculture and Soil Biodiversity",
+    "source_url": "https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/agriculture-and-soil-biodiversity/en/"
+  },
+  {
+    "id": "impact_003",
+    "topic": "human_impact",
+    "title": "Water pollution and agricultural ecosystems",
+    "content": "Inappropriate use of pesticides and fertilizers can threaten soil and water quality and create risks for ecosystems. Sustainable soil and water management can reduce environmental pressures while supporting soil and water functions.",
+    "metrics": [
+      "water_quality",
+      "soil_quality",
+      "ecosystem_health",
+      "biodiversity"
+    ],
+    "interventions": [
+      "responsible_input_management",
+      "integrated_pest_management",
+      "soil_conservation"
+    ],
+    "source": "FAO India - Integrated Soil and Water Management",
+    "source_url": "https://www.fao.org/india/news/detail/Integrated-soil-and-water-management-essential-to-achieve-food-security-in-India-FAO/en/"
+  },
+  {
+    "id": "impact_004",
+    "topic": "human_impact",
+    "title": "Land degradation and ecological resilience",
+    "content": "Land degradation can reduce land productivity and place pressure on biodiversity and ecosystem functions. Sustainable land management combines soil, water and natural-resource conservation with restoration and climate resilience.",
+    "metrics": [
+      "land_degradation",
+      "land_productivity",
+      "biodiversity",
+      "ecosystem_resilience"
+    ],
+    "interventions": [
+      "land_restoration",
+      "sustainable_land_management",
+      "soil_conservation",
+      "water_conservation"
+    ],
+    "source": "FAO - Sustainable Land Management",
+    "source_url": "https://www.fao.org/land-water/land/sustainable-land-management/en/"
+  }
+]
