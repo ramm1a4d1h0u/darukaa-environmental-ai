@@ -1,57 +1,131 @@
-# Darukaa.Earth — AI Environmental Scientist
+# Darukaa Earth — AI Environmental Scientist
 
-An AI-powered environmental reasoning system that analyzes soil, climate, land-use and biodiversity conditions and generates scientifically grounded biodiversity and land-management recommendations.
+[![CI](https://github.com/ramm1a4d1h0u/darukaa-environmental-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/ramm1a4d1h0u/darukaa-environmental-ai/actions/workflows/ci.yml)
 
-The system is designed as an **AI environmental scientist, not a generic chatbot**. It combines structured environmental inputs, scientific knowledge retrieval, rule-based multi-metric reasoning, intervention scoring, and Gemini-powered conversational reporting.
+An AI-powered environmental reasoning and biodiversity recommendation system built for the Darukaa Earth Hackathon.
 
----
+The system combines structured environmental data, rule-based reasoning, scientific knowledge retrieval (RAG), a recommendation engine, and Gemini-powered report generation.
 
-## 1. Problem Statement
+##  Live Demo
 
-Environmental decisions often depend on multiple interacting factors rather than a single measurement.
+https://darukaa-environmental-ai.onrender.com
 
-For example:
+##  GitHub
 
-- Low soil organic carbon can affect soil structure and biological activity.
-- Low rainfall and low soil moisture can increase water stress.
-- Continuous monoculture can reduce crop and habitat diversity.
-- Reduced biodiversity can affect ecosystem functions such as pollination and nutrient cycling.
-
-The Darukaa AI system connects these variables and generates recommendations based on their interactions.
-
-The goal is to answer:
-
-> **What should be done, why should it be done, which environmental metrics can improve, and over what time horizon?**
+https://github.com/ramm1a4d1h0u/darukaa-environmental-ai
 
 ---
 
-# 2. Key Features
+##  Problem
 
-### Environmental reasoning
+Environmental decisions depend on multiple interacting factors such as:
 
-The system analyzes:
-
-- Soil organic carbon
-- Soil pH
-- Soil moisture
-- Rainfall
-- Temperature
+- Soil health
+- Water availability
+- Climate
 - Land use
-- Crop type
-- Biodiversity index
-- Region
+- Biodiversity
 
-### Multi-metric reasoning
+Generic AI systems can provide broad sustainability advice without reasoning about these factors together.
 
-Instead of treating variables independently, the reasoning engine identifies interactions such as:
+Darukaa Earth AI is designed as an **AI Environmental Scientist**, connecting environmental conditions to targeted interventions and explaining the reasoning behind them.
+
+---
+
+##  How It Works
 
 ```text
-Soil Organic Carbon
-        +
-Rainfall
-        +
-Soil Moisture
-        ↓
-Water + Soil Stress
-        ↓
-Potential interventions
+User Question
+      ↓
+Environmental Information Extraction
+      ↓
+Environmental State
+      ↓
+Risk Detection
+      ↓
+Multi-Metric Reasoning
+      ↓
+Scientific Knowledge Retrieval (RAG)
+      ↓
+Recommendation Engine
+      ↓
+Gemini Scientific Report
+      ↓
+Recommendation + Reasoning + Metrics + Time Horizon
+
+
+---
+
+
+
+
+
+##  Recommendation Engine
+
+The system generates targeted interventions based on detected environmental risks.
+
+Supported interventions include:
+
+- Cover crops
+- Crop rotation
+- Crop diversification
+- Agroforestry
+- Residue management
+- Soil moisture conservation
+- Pollinator habitat
+
+Each recommendation explains what to do, why it is relevant, affected environmental metrics, and the expected time horizon.
+
+The system also respects user constraints during the conversation. For example, if the user says they do not want to plant trees, tree-based interventions such as agroforestry are excluded.
+
+---
+
+##  Scientific RAG
+
+Scientific environmental knowledge is stored in:
+
+`data/knowledge_base.json`
+
+ChromaDB is used to retrieve relevant knowledge based on the user's environmental conditions and question.
+
+The retrieved knowledge is used to ground the recommendation and report generation process.
+
+---
+
+##  Conversational AI
+
+The system maintains session-level conversational context.
+
+It can remember environmental measurements, crop, land use, region, and user constraints.
+
+It can also ask clarification questions when important information is missing.
+
+The system supports follow-up requests such as:
+
+- Trade-off analysis
+- One-year action plans
+- Additional environmental recommendations
+
+---
+
+##  Technology Stack
+
+| Component | Technology |
+|---|---|
+| Backend | Python, FastAPI |
+| LLM | Google Gemini |
+| RAG | ChromaDB |
+| Frontend | HTML, CSS, JavaScript |
+| CI/CD | GitHub Actions |
+| Deployment | Render |
+| Version Control | Git, GitHub |
+
+---
+
+## Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ramm1a4d1h0u/darukaa-environmental-ai.git
+cd darukaa-environmental-ai
